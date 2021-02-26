@@ -1,32 +1,106 @@
-import java.util.Scanner;
+//Parent(s): Customer, Products, Location
+//Children: none
+
+import java.util.*;
+//import java.util.Scanner;
 
 public class Transaction {
 
-	public void checkout(Customer c) {
-		double transactionTotal; 
-		System.out.println("Please enter transaction total (format XXXX.XX)");
-		try (Scanner in = new Scanner(System.in)) {
-			transactionTotal = in.nextDouble();
-		}
-		System.out.println("Transaction verified. Adding loyalty points...");
+	int transactionID;
+	int date;  //MMDDYYYY
+	ArrayList<Product> products;
+	float subtotal;
+	float tax;
+	float discounts;
+	//payType paymentType;
+	LoyaltyAccount loyalty;
+	Redeemer redeemer;
+	
+	public Transaction(int tID, int dt, ArrayList<Product> p, float s, float t, float d, LoyaltyAccount l, Redeemer r) {
+		transactionID = tID;
+		date = dt;
+		products = p;
+		subtotal = s;
+		tax = t;
+		discounts = d;
+		//paymentType = pT;
+		loyalty = l;
+		redeemer = r;
+	}
+
+	//Getters and setters
+	
+	public int getTransactionID() {
+		return transactionID;
+	}
+
+	public void setTransactionID(int transactionID) {
+		this.transactionID = transactionID;
+	}
+
+	public int getDate() {
+		return date;
+	}
+
+	public void setDate(int date) {
+		this.date = date;
+	}
+
+	public ArrayList<Product> getProducts() {
+		return products;
+	}
+
+	public void setProducts(ArrayList<Product> products) {
+		this.products = products;
+	}
+
+	public float getSubtotal() {
+		return subtotal;
+	}
+
+	public void setSubtotal(float subtotal) {
+		this.subtotal = subtotal;
+	}
+
+	public float getTax() {
+		return tax;
+	}
+
+	public void setTax(float tax) {
+		this.tax = tax;
+	}
+
+	public float getDiscounts() {
+		return discounts;
+	}
+
+	public void setDiscounts(float discounts) {
+		this.discounts = discounts;
+	}
+
+	public LoyaltyAccount getLoyalty() {
+		return loyalty;
+	}
+
+	public void setLoyalty(LoyaltyAccount loyalty) {
+		this.loyalty = loyalty;
+	}
+
+	public Redeemer getRedeemer() {
+		return redeemer;
+	}
+
+	public void setRedeemer(Redeemer redeemer) {
+		this.redeemer = redeemer;
+	}
+	
+	//Methods
+	
+	void addProduct(Product newProduct) { //move to Product class?
 		
-		int points = (int)transactionTotal;
-		points *= .55;
-		addPoints(c, points);
 	}
 	
-	public void addPoints(Customer c, int newPoints) {
-		c.setPointTotal(newPoints += c.getPointTotal());
-	}
-	
-	public void showPointShop() {
-		System.out.println("Reward 1: 20 points");
-		System.out.println("Reward 2: 50 points");
-		System.out.println("Reward 3: 100 points");
-		System.out.println("Reward 4: 500 points");
-	}
-	
-	public void removePoints(Customer c, int newPoints) {
-		c.setPointTotal(newPoints -= c.getPointTotal());
+	void applyLoyalty(LoyaltyAccount appAcc) {
+		
 	}
 }
